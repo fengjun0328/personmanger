@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.dao.PersonMapper">
+    <select id="findPersons" resultType="person">
+        select p.*,(select deptName from dept d where d.id=p.did) dName
+        from person p
+        order by  id desc
+    </select>
+
+    <select id="findPersonsByPageAndContion" resultType="person">
+        select p.*,(select deptName from dept d where d.id=p.did) dName
+        from person p
+        <trim prefix="where" prefixOverrides="and||or" >
+            <if test="person.name!=null and person.name!=''">
+                and name like concat("%",#{person.name},"%")
+            </if>
+        </trim>
+        order by  id desc
+        limit ${start},${pageSize}
+
+    </select>
+
+    <select id="findCount" resultType="long">
+        select count(id)
+        from person p
+        <trim prefix="where" prefixOverrides="and||or" >
+            <if test="person.name!=null and person.name!=''">
+                and name like #{person.name}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addPerson" parameterType="person">
+        insert into person( name, gender, age, `rank`, did,bithday)
+        values (#{name},#{gender},#{age},#{rank},#{did},#{bithday})
+    </insert>
+</mapper>
