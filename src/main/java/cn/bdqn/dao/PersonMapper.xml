@@ -28,8 +28,6 @@
         <trim prefix="where" prefixOverrides="and||or" >
             <if test="person.name!=null and person.name!=''">
                 and name like #{person.name}
-
-
             </if>
         </trim>
     </select>

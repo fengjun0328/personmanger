@@ -29,11 +29,8 @@ public class PersonServiceImpl implements  PersonService {
 
     @Override
     public List<Person> findPersonsByPageAndContion(Person person, Integer currNO, Integer pageSize) {
-//        person.setName("%"+person.getName()+"%");
-        //%null%
         return personMapper.findPersonsByPageAndContion(person,(currNO-1)*pageSize,pageSize);
     }
-
     @Override
     public Long findCount(Person person) {
         return personMapper.findCount(person);

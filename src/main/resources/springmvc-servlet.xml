@@ -14,7 +14,6 @@
 	<!--配置对注解的支持-->
 	<context:component-scan base-package="cn.bdqn.controller"/>
 	<mvc:annotation-driven conversion-service="conversionService">
-
 	</mvc:annotation-driven>
 
 	<!--配置视图解析器-->

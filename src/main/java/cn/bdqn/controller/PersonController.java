@@ -40,7 +40,6 @@ public class PersonController {
                        Long total,Person person){
         String name=person.getName();
         System.out.println("==========>"+name);
-
         int pageSize=2;//每页显示的条数
         //获取所有的信息
         List<Person> persons=personService.findPersonsByPageAndContion(person,currNo,pageSize);
@@ -49,7 +48,6 @@ public class PersonController {
         //总页数
         total=(count%pageSize==0?count/pageSize:(count/pageSize+1));
         System.out.println("persons的长度："+persons.size());
-
         model.addAttribute("persons",persons);
         model.addAttribute("currNo",currNo);
         model.addAttribute("total",total);
